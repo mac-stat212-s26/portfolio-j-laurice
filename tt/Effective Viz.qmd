@@ -21,9 +21,9 @@ ggplot(sizes_all,
   geom_col() +
   scale_fill_manual(values = c("blue", "black", "orange")) +
   labs(
-    title = "Total Capital Stock by Company Size",
+    title = "Relationship between size and stock",
     x = "Size of the Company",
-    y = "Total Capital Stock (USD, millions)"
+    y = "Total Stock (USD, millions)"
   )
 ```
 
