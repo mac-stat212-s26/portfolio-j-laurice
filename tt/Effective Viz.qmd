@@ -27,3 +27,5 @@ ggplot(sizes_all,
   )
 ```
 
+From what we are learning here, small enterprise comanies are the most common types of companies in Brazil, consequentially, we see that micro companies particularly super small ones don't seem to have any stock. This makes sense because their value is very low. The bar in black showing other is where big companies are and those have a good amount of stock.
+
