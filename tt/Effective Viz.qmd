@@ -1,0 +1,31 @@
+```{r}
+library(tidyverse)
+library(ggplot2)
+companies <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-01-27/companies.csv')
+legal_nature <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-01-27/legal_nature.csv')
+qualifications <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-01-27/qualifications.csv')
+size <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-01-27/size.csv')
+```
+
+
+
+```{r}
+sizes_all <- companies |>
+  group_by(company_size) |>
+  summarise(total_capital_stock = sum(capital_stock, na.rm = TRUE))
+
+ggplot(sizes_all,
+       aes(x = company_size,
+           y = total_capital_stock,
+           fill = company_size)) +
+  geom_col() +
+  scale_fill_manual(values = c("blue", "black", "orange")) +
+  labs(
+    title = "Relationship between size and stock",
+    x = "Size of the Company",
+    y = "Total Stock (USD, millions)"
+  )
+```
+
+From what we are learning here, small enterprise comanies are the most common types of companies in Brazil, consequentially, we see that micro companies particularly super small ones don't seem to have any stock. This makes sense because their value is very low. The bar in black showing other is where big companies are and those have a good amount of stock.
+
