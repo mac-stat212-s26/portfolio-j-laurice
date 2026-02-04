@@ -1,0 +1,29 @@
+```{r}
+library(tidyverse)
+library(ggplot2)
+companies <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-01-27/companies.csv')
+legal_nature <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-01-27/legal_nature.csv')
+qualifications <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-01-27/qualifications.csv')
+size <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-01-27/size.csv')
+```
+
+
+
+```{r}
+sizes_all <- companies |>
+  group_by(company_size) |>
+  summarise(total_capital_stock = sum(capital_stock, na.rm = TRUE))
+
+ggplot(sizes_all,
+       aes(x = company_size,
+           y = total_capital_stock,
+           fill = company_size)) +
+  geom_col() +
+  scale_fill_manual(values = c("blue", "black", "orange")) +
+  labs(
+    title = "Total Capital Stock by Company Size",
+    x = "Size of the Company",
+    y = "Total Capital Stock (USD, millions)"
+  )
+```
+
